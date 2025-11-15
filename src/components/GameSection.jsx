@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Link from 'next/link';
 
 const IndiaGamingSection = () => {
   const ref = useRef(null);
@@ -93,7 +94,7 @@ const IndiaGamingSection = () => {
               style={{ transformStyle: 'preserve-3d' }}
               className='lg:my-[10vh]'
             >
-              <Image src="/images/download2.png" width={200} height={220} alt="Download button"/>
+             <Link href={`https://play.google.com/store/apps/details?id=com.hfg.hash`}> <Image src="/images/download2.png" width={200} height={220} alt="Download button"/></Link>
             </motion.button>
           </div>
 

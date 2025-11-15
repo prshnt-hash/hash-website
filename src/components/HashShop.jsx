@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useRef, useEffect } from 'react';
 
 const HashShop = () => {
@@ -34,7 +35,7 @@ const HashShop = () => {
       {/* Top Right Button */}
       <div className='absolute top-[60px] right-[5vw] md:top-[80px] md:right-[6vw] lg:top-[100px] lg:right-[8vw] z-30'>
         <button>
-            <Image src="/component/button.svg" alt='button' width={100} height={100}/>
+           <Link href={`https://play.google.com/store/apps/details?id=com.hfg.hash`}> <Image src="/component/button.svg" alt='button' width={100} height={100}/> </Link>
         </button>
       </div>
 

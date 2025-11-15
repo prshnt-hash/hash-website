@@ -1,11 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
-import { motion } from 'framer-motion';
-import {Menu} from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu } from 'lucide-react';
+import Sidebar from './SideBar';
+import Link from 'next/link';
+
 
 const HeroSection = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   const hashForText = "HASH FOR".split('');
   const gamersText = "GAMERS".split('');
 
@@ -47,112 +52,140 @@ const HeroSection = () => {
     },
   };
 
+  // Handle button click only
+  const handleMenuClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsSidebarOpen(true);
+  };
+
   return (
-    <div className='w-screen h-screen bg-black flex items-center justify-center p-[3vh]'>
-      {/* Main Container with padding */}
-      <div className='relative w-full h-full'>
-        
-        {/* Background Image/Gradient */}
-        <div className='relative w-full h-full overflow-hidden'>
-          <Image 
-            src='/images/hero5.png' 
-            alt='Hero background'
-            fill
-            className='object-cover opacity-80'
-            priority
+    <>
+      {/* Sidebar Component with AnimatePresence */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <Sidebar 
+            isOpen={isSidebarOpen} 
+            onClose={() => setIsSidebarOpen(false)} 
           />
-        </div>
+        )}
+      </AnimatePresence>
 
-        {/* Top Buttons - Absolute positioned */}
-        <div className='absolute top-[40px] left-[40px] right-[40px] flex justify-between items-center z-40'>
-          {/* Menu/Sidebar Button */}
-          <button className='p-3'>
+      <div className='w-screen h-screen bg-black flex items-center justify-center p-[3vh]'>
+        {/* Main Container with padding */}
+        <div className='relative w-full h-full'>
+          
+          {/* Background Image/Gradient */}
+          <div className='relative w-full h-full overflow-hidden'>
             <Image 
-              src='/component/sideButton.svg' 
-              alt='Menu'
-              width={40}
-              height={40}
-              className='absolute'
+              src='/images/hero-final.png' 
+              alt='Hero background'
+              fill
+              className='object-cover opacity-80'
+              priority
             />
-            <Menu className='absolute text-[10px] mx-[6px] mb-[2vh]'/>
-            
-          </button>
+          </div>
 
-          {/* Download Button */}
-          <button>
-            <Image src="/component/button.svg" alt='download' width={100} height={100}/>
-          </button>
-        </div>
+          {/* Top Buttons - Absolute positioned */}
+          <div className='absolute top-[40px] left-[40px] right-[40px] flex justify-between items-center z-40'>
+            {/* Menu/Sidebar Button - NO HOVER */}
+            <button 
+              onClick={handleMenuClick}
+              className='w-[40px] h-[40px] cursor-pointer'
+              type='button'
+            >
+              <Image 
+                src='/component/sideButton.svg' 
+                alt='Menu'
+                width={40}
+                height={40}
+                className='w-full h-full pointer-events-none'
+              />
+              <Menu className='absolute top-[12px] left-[12px] w-[16px] h-[16px] text-black pointer-events-none'/>
+            </button>
 
-        {/* Purple Rectangle Image with Text (Your provided image) */}
-        <div className='absolute inset-0 flex items-center justify-center z-20'>
-          <div className='relative mt-[-24vh]'>
-            <div className='bg-[#744DE0] w-[77vw] h-[52vh] flex flex-col justify-center items-center'>
-              <motion.p
-                className='text-white text-2xl lg:mt-[-140px] text-center mb-4'
-                variants={subtitleVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                pick your café, choose your game
-              </motion.p>
+            {/* Download Button */}
+            <Link href={`https://play.google.com/store/apps/details?id=com.hfg.hash`}>
+            <button>
+              <Image 
+                src="/component/button.svg" 
+                alt='download' 
+                width={100} 
+                height={100}
+              />
+            </button>
+            </Link>
+          </div>
 
-              <motion.div
-                className='text-white lg:text-8xl font-bold text-center flex flex-wrap justify-center'
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {hashForText.map((char, index) => (
-                  <motion.span
-                    key={`hash-for-${index}`}
-                    variants={charVariants}
-                    style={{
-                      display: 'inline-block',
-                      marginRight: char === ' ' ? '0.5em' : '0',
-                    }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.div>
+          {/* Purple Rectangle with Text */}
+          <div className='absolute inset-0 flex items-center justify-center z-20 pointer-events-none'>
+            <div className='relative mt-[-24vh]'>
+              <div className='bg-[#744DE0] w-[77vw] h-[52vh] flex flex-col justify-center items-center'>
+                <motion.p
+                  className='text-white text-2xl lg:mt-[-140px] text-center mb-4'
+                  variants={subtitleVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  pick your café, choose your game
+                </motion.p>
 
-              <motion.div
-                className='text-white lg:text-8xl font-bold text-center flex flex-wrap justify-center'
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {gamersText.map((char, index) => (
-                  <motion.span
-                    key={`gamers-${index}`}
-                    variants={charVariants}
-                    style={{
-                      display: 'inline-block',
-                    }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.div>
+                <motion.div
+                  className='text-white lg:text-8xl font-bold text-center flex flex-wrap justify-center'
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {hashForText.map((char, index) => (
+                    <motion.span
+                      key={`hash-for-${index}`}
+                      variants={charVariants}
+                      style={{
+                        display: 'inline-block',
+                        marginRight: char === ' ' ? '0.5em' : '0',
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.div>
+
+                <motion.div
+                  className='text-white lg:text-8xl font-bold text-center flex flex-wrap justify-center'
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {gamersText.map((char, index) => (
+                    <motion.span
+                      key={`gamers-${index}`}
+                      variants={charVariants}
+                      style={{
+                        display: 'inline-block',
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className='absolute bottom-[80px] left-1/2 transform -translate-x-1/2 lg:px-[8vw] lg:mx-[3vw] lg:my-[5vh] w-[600px] h-[300px] md:w-[700px] md:h-[350px] lg:w-[800px] lg:h-[400px] z-30'>
-          <Image 
-            src='/images/gaming-characters.png' 
-            alt='Gaming characters'
-            width={600}
-            height={560}
-            className='object-contain object-bottom'
-          />
-        </div>
+          {/* Gaming Characters */}
+          <div className='absolute bottom-[80px] left-1/2 transform -translate-x-1/2 w-[600px] h-[300px] md:w-[700px] md:h-[350px] lg:w-[800px] lg:h-[400px] z-30 pointer-events-none'>
+            <Image 
+              src='/images/gaming-characters.png' 
+              alt='Gaming characters'
+              width={600}
+              height={550}
+              className='object-contain object-bottom lg:mx-[8.6vw] lg:my-[-4vh]'
+            />
+          </div>
 
-        {/* Scroll Down Indicator */}
-        <div className='absolute bottom-[60px] left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2'>
-          <p className='text-white text-sm md:text-base'>Scroll Down</p>
-          <div className='flex flex-col gap-1'>
+          {/* Scroll Down Indicator */}
+          <div className='absolute bottom-[60px] left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2 pointer-events-none'>
+            <p className='text-white text-sm md:text-base'>Scroll Down</p>
             <svg 
               className='w-6 h-6 text-white animate-bounce' 
               fill='none' 
@@ -165,10 +198,10 @@ const HeroSection = () => {
               <path d='M19 14l-7 7m0 0l-7-7m7 7V3'></path>
             </svg>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
