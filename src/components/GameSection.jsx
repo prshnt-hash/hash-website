@@ -70,7 +70,7 @@ const IndiaGamingSection = () => {
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
               style={{ transformStyle: 'preserve-3d' }}
-              className='text-white text-2xl md:text-3xl lg:text-4xl xl:text-3xl font-medium leading-tight lg:mt-[10vh]'
+              className='text-white text-2xl md:text-3xl lg:text-4xl xl:text-3xl font-medium leading-tight mt-[12vh] lg:mt-[10vh]'
             >
               Be part of India's gaming movement.
             </motion.h1>
@@ -92,7 +92,7 @@ const IndiaGamingSection = () => {
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
               style={{ transformStyle: 'preserve-3d' }}
-              className='lg:my-[10vh]'
+              className='lg:my-[10vh] my-[6vh]'
             >
              <Link href={`https://play.google.com/store/apps/details?id=com.hfg.hash`}> <Image src="/images/download2.png" width={200} height={220} alt="Download button"/></Link>
             </motion.button>
@@ -104,7 +104,7 @@ const IndiaGamingSection = () => {
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
               style={{ transformStyle: 'preserve-3d' }}
-              className='flex justify-center mb-[-20vh] lg:mt-[24vh]'
+              className='flex justify-center mb-[-20vh] lg:mt-[24vh] mt-[20vh]'
             >
               <Image src="/images/slogan.svg" width={200} height={180} alt="Slogan"/>
             </motion.div>

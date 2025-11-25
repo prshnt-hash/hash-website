@@ -111,7 +111,7 @@ const AboutSection = () => {
           </motion.h1>
           
           <motion.p 
-            className='text-4xl font-bold leading-tight mt-8'
+            className='lg:text-4xl text-xl font-bold leading-tight mt-8'
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
