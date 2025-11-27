@@ -1,5 +1,6 @@
 import AboutSection from "@/components/AboutSection";
 import FeaturesSection from "@/components/FeatureSection";
+import Footer from "@/components/FooterSection";
 import IndiaGamingSection from "@/components/GameSection";
 import HashShop from "@/components/HashShop";
 import Hero from "@/components/Hero";
@@ -18,6 +19,7 @@ export default function Page() {
       <HashShop/>
       <ProblemsSection/>
       <IndiaGamingSection/>
+      <Footer/>
     </div>
   )
 }

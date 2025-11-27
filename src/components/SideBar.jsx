@@ -2,22 +2,21 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const menuItems = [
-    { label: 'ABOUT', highlighted: true },
-    { label: 'FEATURES', highlighted: false },
-    { label: 'HASH APP', highlighted: false },
-    { label: 'HASH SHOP', highlighted: false },
-    { label: 'HOW TO START', highlighted: false },
-    { label: 'FAQ', highlighted: false }
+    { label: 'ABOUT' },
+    { label: 'FEATURES' },
+    { label: 'HASH APP' },
+    { label: 'HASH SHOP' },
+    { label: 'HOW TO START' },
+    { label: 'FAQ' }
   ];
 
   const socialLinks = ['Instagram', 'LinkedIn', 'Twitter'];
 
-  // Prevent any event from bubbling
   const handleSidebarClick = (e) => {
     e.stopPropagation();
   };
@@ -75,19 +74,16 @@ const Sidebar = ({ isOpen, onClose }) => {
             {/* Menu Items */}
             <div className='flex flex-col gap-6 mt-20'>
               {menuItems.map((item, index) => (
-                <div key={index} className='cursor-pointer'>
-                  {item.highlighted ? (
-                    <div className='relative inline-block'>
-                      <div className='absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 rounded-lg blur-sm opacity-75'></div>
-                      <div className='relative bg-green-500 text-white px-6 py-2 rounded-lg font-bold text-lg hover:bg-green-600 transition-colors'>
-                        {item.label}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className='text-white text-lg font-medium hover:text-green-400 transition-colors'>
+                <div key={index} className='cursor-pointer group'>
+                  <div className='relative inline-block'>
+                    {/* Glow effect - only visible on hover */}
+                    <div className='absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 blur-sm opacity-0 group-hover:opacity-75 transition-opacity duration-300 rounded-lg'></div>
+                    
+                    {/* Text */}
+                    <div className='relative text-white px-6 py-2 rounded-lg font-bold text-lg group-hover:bg-green-500 transition-all duration-300'>
                       {item.label}
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
             </div>

@@ -1,5 +1,6 @@
 import { Orbitron, Rajdhani } from 'next/font/google';
 import "./globals.css";
+import BackgroundMusic from '@/components/BackgroundMusic';
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
         className={`${orbitron.variable}`}
       >
         {children}
+        <BackgroundMusic/>
       </body>
     </html>
   );

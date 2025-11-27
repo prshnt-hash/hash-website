@@ -15,7 +15,7 @@ const HashShop = () => {
   }, []);
 
   return (
-    <div className='relative w-screen h-screen overflow-hidden bg-black'>
+    <div className='relative w-full min-h-screen overflow-hidden bg-black'>
       {/* Background Video */}
       <video
         ref={videoRef}
@@ -32,63 +32,87 @@ const HashShop = () => {
       {/* Dark Overlay */}
       <div className='absolute inset-0 bg-black/40 z-10'></div>
 
-      {/* Top Right Button */}
-      <div className='absolute top-[60px] right-[5vw] md:top-[80px] md:right-[6vw] lg:top-[100px] lg:right-[8vw] z-30'>
-        <button>
-           <Link href={`https://play.google.com/store/apps/details?id=com.hfg.hash`}> <Image src="/component/button.svg" alt='button' width={100} height={100}/> </Link>
-        </button>
-      </div>
-
-      {/* Content Container */}
-      <div className='relative z-20 h-full flex flex-col lg:flex-row items-center justify-between px-[5vw] lg:px-[8vw] lg:mb-[100px] py-[8vh]'>
-        
-        {/* Left Side - Text Content */}
-        <div className='flex flex-col gap-8 max-w-xl'>
-          {/* Heading */}
-          <h1>
-            <Image src="/images/HashShop.png" alt='hashshop' width={200} height={120}/>
-          </h1>
-          
-          {/* Description Text */}
-          <p className='text-white text-lg md:text-xl lg:text-2xl font-medium leading-relaxed'>
-            <Image src={"/images/bookingText.png"} width={200} alt='booking' height={120}/>
-          </p>
-
-          {/* Shop Now Button */}
-          <button>
-            <Image src="/images/shopnow.svg" alt='shopnow' width={110} height={110}/>
-          </button>
-        </div>
-
-        {/* Right Side - Product Images (Energy Drinks) */}
-        <div className='flex flex-row gap-4 md:gap-6 items-center mt-8 lg:mt-[36vh]'>
-          {/* First Drink (Orange Monster) */}
-          <div className='relative w-[140px] h-[280px] md:w-[180px] md:h-[360px] lg:w-[200px] lg:h-[400px]'>
+      {/* Top Right Button - Responsive positioning */}
+      <div className='absolute top-4 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 lg:top-16 lg:right-16 z-30'>
+        <Link href='https://play.google.com/store/apps/details?id=com.hfg.hash'>
+          <div className='relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 hover:scale-110 transition-transform duration-300'>
             <Image 
-              src='/images/hash-monster-orange.png' 
-              alt='Hash Monster Orange'
+              src='/component/button.svg' 
+              alt='Download app button' 
               fill
               className='object-contain'
             />
           </div>
+        </Link>
+      </div>
 
-          {/* Second Drink (Green X-Slash) */}
-          <div className='relative w-[140px] h-[280px] md:w-[180px] md:h-[360px] lg:w-[200px] lg:h-[400px]'>
+      {/* Content Container */}
+      <div className='relative z-20 min-h-screen flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24 py-8 md:py-12 lg:py-16'>
+        
+        {/* Left Side - Text Content */}
+        <div className='flex flex-col gap-4 sm:gap-6 md:gap-8 max-w-xl w-full lg:w-auto mb-8 lg:mb-0'>
+          {/* Heading */}
+          <div className='relative w-40 h-20 sm:w-48 sm:h-24 md:w-56 md:h-28 lg:w-64 lg:h-32'>
+            <Image 
+              src='/images/HashShop.png' 
+              alt='Hash Shop logo' 
+              fill
+              className='object-contain object-left'
+            />
+          </div>
+          
+          {/* Description Text */}
+          <div className='relative w-40 h-20 sm:w-48 sm:h-24 md:w-56 md:h-28 lg:w-64 lg:h-32'>
+            <Image 
+              src='/images/bookingText.png' 
+              alt='Booking description' 
+              fill
+              className='object-contain object-left'
+            />
+          </div>
+
+          {/* Shop Now Button */}
+          <Link href='/shop'>
+            <div className='relative w-24 h-12 sm:w-28 sm:h-14 md:w-32 md:h-16 lg:w-36 lg:h-18 hover:scale-105 transition-transform duration-300 cursor-pointer'>
+              <Image 
+                src='/images/shopnow.svg' 
+                alt='Shop now button' 
+                fill
+                className='object-contain object-left'
+              />
+            </div>
+          </Link>
+        </div>
+
+        {/* Right Side - Product Images (Energy Drinks) */}
+        <div className='flex flex-row gap-2 sm:gap-4 md:gap-6 lg:gap-8 items-end justify-center lg:justify-end w-full lg:w-auto'>
+          {/* First Drink (Orange Monster) */}
+          <div className='relative w-24 h-48 sm:w-32 sm:h-64 md:w-40 md:h-80 lg:w-48 lg:h-96 xl:w-56 xl:h-[28rem] hover:scale-105 transition-transform duration-300'>
+            <Image 
+              src='/images/hash-monster-orange.png' 
+              alt='Hash Monster Orange Energy Drink'
+              fill
+              className='object-contain drop-shadow-2xl'
+            />
+          </div>
+
+          {/* Second Drink (Green X-Slash) - Center/Tallest */}
+          <div className='relative w-24 h-48 sm:w-32 sm:h-64 md:w-40 md:h-80 lg:w-48 lg:h-96 xl:w-56 xl:h-[28rem] hover:scale-105 transition-transform duration-300'>
             <Image 
               src='/images/hash-x-green.png' 
-              alt='Hash X Green'
+              alt='Hash X Green Energy Drink'
               fill
-              className='object-contain'
+              className='object-contain drop-shadow-2xl'
             />
           </div>
 
           {/* Third Drink (Orange Monster) */}
-          <div className='relative w-[140px] h-[280px] md:w-[180px] md:h-[360px] lg:w-[200px] lg:h-[400px]'>
+          <div className='relative w-24 h-48 sm:w-32 sm:h-64 md:w-40 md:h-80 lg:w-48 lg:h-96 xl:w-56 xl:h-[28rem] hover:scale-105 transition-transform duration-300'>
             <Image 
               src='/images/hash-monster-orange.png' 
-              alt='Hash Monster Orange'
+              alt='Hash Monster Orange Energy Drink'
               fill
-              className='object-contain'
+              className='object-contain drop-shadow-2xl'
             />
           </div>
         </div>

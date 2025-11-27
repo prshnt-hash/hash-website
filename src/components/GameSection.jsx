@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
+import Footer from './FooterSection';
 
 const IndiaGamingSection = () => {
   const ref = useRef(null);
@@ -113,7 +114,10 @@ const IndiaGamingSection = () => {
         </div>
 
       </div>
+      
     </div>
+
+
   );
 }
 
